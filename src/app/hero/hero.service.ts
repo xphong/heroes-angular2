@@ -1,28 +1,34 @@
-import {HeroModel} from './hero.model'
+import {HeroModel} from './hero.model';
+import {AngularFire, FirebaseArray} from 'firebase/angularfire';
 
 export class HeroService {
-  heroes: Array<HeroModel>;
+  heroes: FirebaseArray;
   
   constructor() {
-    this.heroes = [
-      { "id": 1, "name": "Mr. Nice" },
-      { "id": 2, "name": "Narco" },
-      { "id": 3, "name": "Bombasto" },
-      { "id": 4, "name": "Celeritas" },
-      { "id": 5, "name": "Magneta" },
-      { "id": 6, "name": "RubberMan" },
-      { "id": 7, "name": "Dynama" },
-      { "id": 8, "name": "Dr IQ" },
-      { "id": 9, "name": "Magma" },
-      { "id": 10, "name": "Tornado" }
-    ];
+    var data = new AngularFire(new Firebase('https://heroes-angular2.firebaseio.com/'));
+		this.heroes = data.asArray();
   }
   
   getHeroes() {
-    return this.heroes;
+    return this.heroes.list;
   }
   
   addHero(hero: HeroModel) {
-    this.heroes.push(hero);
+    this.heroes.add(hero);
   }
+  
+  removeHero(hero: HeroModel){
+		this.heroes.remove(hero);
+	}
+	
+	updateHero(hero: HeroModel){
+		this.heroes.save(hero);
+	}
+	
+	removeAll(){
+		for( var i = this.heroes.length - 1 ; i >= 0 ; i -- )
+		{
+			this.heroes.remove( this.heroes[i] );
+		}
+	}
 }
