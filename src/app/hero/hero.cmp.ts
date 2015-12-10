@@ -12,11 +12,12 @@ import {HeroService} from './hero.service';
 })
 
 export class HeroCmp {
-  public title = 'Tour of Heroes';
-  public selectedHero: HeroModel;
-  public heroes: HeroModel[];
+  title: string;
+  selectedHero: HeroModel;
+  heroes: HeroModel[];
   
   constructor(heroService: HeroService) {
+    this.title = 'Tour of Heroes';
     this.heroes = heroService.getHeroes();
   }
   
