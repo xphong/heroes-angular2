@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Angular 2 QuickStart</title>
+    <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <hero>loading...</hero>
+    
+    <script src="../node_modules/systemjs/dist/system.src.js"></script>
+    <script src="../node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script>
+      System.config({
+        packages: {'app': {defaultExtension: 'js'}}
+      });
+      System.import('app/app');
+    </script>
+  </body>
+</html>
