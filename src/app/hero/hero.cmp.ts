@@ -13,15 +13,29 @@ import {HeroService} from './hero.service';
 
 export class HeroCmp {
   title: string;
+  service: HeroService;
   selectedHero: HeroModel;
   heroes: HeroModel[];
   
-  constructor(heroService: HeroService) {
+  constructor(service: HeroService) {
     this.title = 'Tour of Heroes';
-    this.heroes = heroService.getHeroes();
+    this.service = service;
+    this.heroes = service.getHeroes();
   }
   
   onSelect(hero: HeroModel) {
     this.selectedHero = hero;
+  }
+  
+  addHero(newHero) {
+    this.service.addHero({id: this.heroes.length+1, name: newHero.value});
+    newHero.value = '';
+  }
+  
+  enterAddHero($event, newHero) {
+    if ($event.which === 13) {
+      this.service.addHero({id: this.heroes.length+1, name: newHero.value});
+      newHero.value = '';
+    }
   }
 }

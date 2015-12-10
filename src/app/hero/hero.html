@@ -1,4 +1,10 @@
 <h1>{{title}}</h1>
+<div>
+  <h2>Add Hero</h2>
+  <label>name: </label>
+  <input placeholder="name" #newhero (keyup)="enterAddHero($event, newhero)"></input>
+  <button class="add" (click)="addHero(newhero)">Add</button>
+</div>
 <h2>My Heroes</h2>
 <ul class="heroes">
   <li *ng-for="#hero of heroes" (click)="onSelect(hero)">
