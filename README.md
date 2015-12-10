@@ -12,3 +12,7 @@ npm start
 ## Technologies Used
 * Angular 2
 * TypeScript
+* Firebase
+
+## TODO
+* Update/remove items
